@@ -1,3 +1,4 @@
+from random import randint
 class Ai():
     def __init__(self):
         self.logging = {
@@ -39,10 +40,10 @@ class Ai():
         'P':1,
         'S':-1
         }
-    def translate(move):
-        if type(move) == type(0):
+    def translate(self, move):
+        if type(move) == type('R'):
             return self.str2int[move]
-        elif type(move) == type('R'):
+        elif type(move) == type(0):
             return self.int2str[move]
     def log(self, aimove, pmove, result):
         self.logging['ai'].append(aimove)
@@ -50,21 +51,35 @@ class Ai():
         self.logging['result'].append(result)
         self.updateModel()
     def updateModel(self):
+        if len(self.logging['player']) <= 2:
+            return
         self.whenResult[self.logging['result'][-2]].append(self.logging['player'][-1])
         self.whenAiMove[self.logging['ai'][-2]].append(self.logging['player'][-1])
         if self.logging['player'][-1] == self.logging['player'][-2]:
             self.repetition += 1
-        self.chanceOfRepete = len(self.logging['player'])/self.repetition
+        try:
+            self.chanceOfRepete = len(self.logging['player'])/self.repetition
+        except:
+            self.chanceOfRepete = 0
         self.mostCommonMove = max(self.logging['player'])
         l1 = self.translate(self.logging['player'][-1])
         l2 = self.translate(self.logging['player'][-2])
         self.changeGesture[l1+l2] + 1
     def predict(self):
+        if len(self.logging['player']) <= 3:
+            return randint(-1,1)
+        lose = {
+        0 : 1,
+        1 : -1,
+        -1 : 0
+        }
         prediction = {
-        0:0
-        1:0
+        0:0,
+        1:0,
         -1:0
         }
+
+        #most common gesture after the last gesture
         largesti = 0
         for keys in self.changeGesture:
             if self.changeGesture[keys] == largesti:
@@ -73,5 +88,25 @@ class Ai():
             elif self.changeGesture[keys] > largesti:
                 predict1 = keys
         if predict1tmp == largesti:
-            prediction[predict1keytmp] = 0.5
-            prediction[keys] = 0.5
+            prediction[self.translate(list(predict1keytmp)[1])] += 0.5
+            prediction[self.translate(list(keys)[1])] += 0.5
+        else:
+            prediction[self.translate(list(keys)[1])] += 1
+        print(prediction)
+        #most common gesture
+        prediction[max(self.logging['player'])] += 0.5
+
+        if self.chanceOfRepete >= 0.75:
+            prediction[self.logging['player'][-1]] += 1.5
+        elif self.chanceOfRepete >= 0.5:
+            prediction[self.logging['player'][-1]] += 0.5
+        result = 0
+        for i in prediction:
+            imax = prediction[i]
+            if imax > result:
+                result = imax
+                resultkeys = i
+            else:
+                resultkeys = i
+        print(prediction, resultkeys)
+        return lose[resultkeys]
