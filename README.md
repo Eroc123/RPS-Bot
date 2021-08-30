@@ -1,5 +1,6 @@
 # RPS-Bot
-Rock Paper Scissor AI written in python and PyQt5
+<p>Rock Paper Scissor AI written in python and PyQt5</p>
+<p>This is a true AI in the sense that it does not read your input and use that against you, but it will use your past inputs to learn how to beat you :)</p>
 
 
 # Requriements 
