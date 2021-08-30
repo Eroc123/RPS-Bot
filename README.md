@@ -9,7 +9,7 @@ Rock Paper Scissor AI written in python and PyQt5
 <p>Download the files
 <code>git clone https://github.com/Eroc123/RPS-Bot.git</code></p>
 
-<p>put them in the same folder</p>
-<p>run <code>python3 main.py</code> in terminal (linux) </p>
-<p>else run <colde>py main.py</code> in the terimal (windows)</p>
-<p>you need to install PyQt5 is not already installed
+<p>Put them in the same folder</p>
+<p>Run <code>python3 main.py</code> in terminal (linux) </p>
+<p>Else run <colde>py main.py</code> in the terimal (windows)</p>
+<p>You need to install PyQt5 is not already installed
