@@ -51,6 +51,7 @@
     AIchoice = c.predict()
     score += check([userchoice, AIchoice]) #remember its user choice first, then ai choice
     print(score)
+  </code>
     
     
   
