@@ -13,5 +13,5 @@
 
 <p>Put them in the same folder</p>
 <p>Run <code>python3 main.py</code> in terminal (linux) </p>
-<p>Else run <colde>py main.py</code> in the terimal (windows)</p>
+<p>Else run <code>py main.py</code> in the terimal (windows)</p>
 <p>You need to install PyQt5 is not already installed
