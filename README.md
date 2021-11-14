@@ -5,6 +5,7 @@
 
 # Requriements 
 * PyQt5
+* Python (3.x)
 
 # How to use
 <p>Download the files
