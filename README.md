@@ -29,7 +29,7 @@
   1 : 'paper'  
   -1 : 'scissor'  
   for example  
-  <code>
+  ```
     from cogs import Ai
     #the cogs.py does not provide functions to find if its a win or a loss
     win = [[1,0],[0,-1],[-1,1]]
@@ -51,7 +51,7 @@
     AIchoice = c.predict()
     score += check([userchoice, AIchoice]) #remember its user choice first, then ai choice
     print(score)
-  </code>
+  ```
     
     
   
